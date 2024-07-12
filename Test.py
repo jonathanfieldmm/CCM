@@ -6,6 +6,7 @@ from folium.plugins import PolyLineTextPath
 from pulp import LpProblem, LpMinimize, LpVariable, lpSum, LpStatus, LpBinary
 from streamlit_folium import folium_static
 import math
+import io
 
 # Sample data for hubs and sources (replace with your actual data)
 hubs_data = {
@@ -112,9 +113,27 @@ for j in pd.DataFrame(hubs_data)['Site Reference']:
     st.write(f"Hub {j}: {production_quantity:.2f} tonnes")
 
 st.write("### Amount of feedstock transported between each source and hub:")
+transport_data = []
 for (i, j) in transport_vars:
     if transport_vars[i, j].varValue > 0:
-        st.write(f"Transport from Source {i} to Hub {j}: {transport_vars[i, j].varValue:.2f} tonnes")
+        amount_transported = transport_vars[i, j].varValue
+        transport_data.append({"Source": i, "Hub": j, "Amount Transported (tonnes)": amount_transported})
+
+# Create a DataFrame for the transport data
+transport_df = pd.DataFrame(transport_data)
+
+# Create a downloadable Excel file
+output = io.BytesIO()
+with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+    transport_df.to_excel(writer, index=False, sheet_name='Transport Data')
+
+# Create a download button
+st.download_button(
+    label="Download Transport Data",
+    data=output.getvalue(),
+    file_name="transport_data.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
 
 # Visualization with Folium
 map_osm = folium.Map(location=[55, -3], zoom_start=6)
@@ -142,3 +161,17 @@ for (i, j) in transport_vars:
                                weight=line_weight, color='red',
                                popup=(f"Transport from {i} to {j}: {transport_vars[i, j].varValue:.2f} tonnes")).add_to(map_osm)
 folium_static(map_osm)
+
+# Debug output to verify the results of the optimization
+st.write("### Production quantities at each hub:")
+for j in pd.DataFrame(hubs_data)['Site Reference']:
+    production_quantity = sum(transport_vars[i, j].varValue for i in pd.DataFrame(sources_data)['Site Reference']) * conversion_factor
+    st.write(f"Hub {j}: {production_quantity:.2f} tonnes")
+
+st.write("### Amount of feedstock transported between each source and hub:")
+transport_data = []
+for (i, j) in transport_vars:
+    if transport_vars[i, j].varValue > 0:
+        amount_transported = transport_vars[i, j].varValue
+        st.write(f"Transport from Source {i} to Hub {j}: {amount_transported:.2f} tonnes")
+        transport_data.append({"Source": i, "Hub": j, "Amount Transported (tonnes)": amount_transported})

@@ -7,7 +7,7 @@ from pulp import LpProblem, LpMinimize, LpVariable, lpSum, LpStatus, LpBinary
 from streamlit_folium import folium_static
 import math
 
-# Sample data for hubs and sources (replace with your actual data)
+# Sample data forj hubs and sources (replace with your actual data)
 hubs_data = {
     'Site Reference': ['Hub01', 'Hub02', 'Hub03', 'Hub04', 'Hub05', 'Hub06', 'Hub07', 'Hub08', 'Hub09', 'Hub10'],
     'X Coordinates': [51.5074, 53.4808, 55.9533, 52.4862, 53.4084, 52.6309, 54.9783, 53.8008, 50.3755, 55.8642],

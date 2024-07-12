@@ -27,12 +27,28 @@ sources_data = {
     'Purchase Price (£/tonne)': [45, 50, 42, 48, 40, 47, 44, 49, 41, 46]
 }
 
-# Key inputs
-conversion_factor = 0.7
-heat_required_per_tonne = 1
-haulage_cost_per_tonne_mile = 0.02
-minimum_total_production = 120000
-generic_capex = 100000
+# Streamlit UI components
+st.title("Optimization Model for Production and Transportation Cost Minimization")
+
+# Split sidebar into sections
+st.sidebar.header("Main Inputs")
+minimum_total_production = st.sidebar.number_input("Minimum Total Production (tonnes)", value=120000)
+
+st.sidebar.header("Cost Inputs")
+haulage_cost_per_tonne_mile = st.sidebar.number_input("Haulage Cost per Tonne Mile (£)", value=0.02)
+generic_capex = st.sidebar.number_input("Generic CAPEX per site (£)", value=100000)
+cost_co2 = st.sidebar.number_input("Cost of CO2 (£/tonne)", value=50)
+cost_ammonia = st.sidebar.number_input("Cost of Ammonia (£/tonne)", value=100)
+cost_phosphorus = st.sidebar.number_input("Cost of Phosphorus (£/tonne)", value=80)
+cost_nitrogen = st.sidebar.number_input("Cost of Nitrogen (£/tonne)", value=70)
+
+st.sidebar.header("Process Inputs")
+conversion_factor = st.sidebar.number_input("Conversion Factor", value=0.7)
+heat_required_per_tonne = st.sidebar.number_input("Heat Required per Tonne (kWh/tonne)", value=1.0)
+co2_per_tonne = st.sidebar.number_input("CO2 Requirement per Tonne (tonnes)", value=0.2)
+ammonia_per_tonne = st.sidebar.number_input("Ammonia Requirement per Tonne (tonnes)", value=0.1)
+phosphorus_per_tonne = st.sidebar.number_input("Phosphorus Requirement per Tonne (tonnes)", value=0.05)
+nitrogen_per_tonne = st.sidebar.number_input("Nitrogen Requirement per Tonne (tonnes)", value=0.15)
 
 # Define the Haversine formula to calculate distances
 def haversine(lon1, lat1, lon2, lat2):
@@ -52,16 +68,6 @@ for _, source in pd.DataFrame(sources_data).iterrows():
         key = (source['Site Reference'], hub['Site Reference'])
         distances[key] = haversine(source['Y Coordinates'], source['X Coordinates'], hub['Y Coordinates'], hub['X Coordinates'])
 
-# Streamlit UI components
-st.title("Optimization Model for Production and Transportation Cost Minimization")
-
-st.sidebar.header("Input Parameters")
-conversion_factor = st.sidebar.number_input("Conversion Factor", value=0.7)
-heat_required_per_tonne = st.sidebar.number_input("Heat Required per Tonne (kWh/tonne)", value=1.0)
-haulage_cost_per_tonne_mile = st.sidebar.number_input("Haulage Cost per Tonne Mile (£)", value=0.02)
-minimum_total_production = st.sidebar.number_input("Minimum Total Production (tonnes)", value=120000)
-generic_capex = st.sidebar.number_input("Generic CAPEX (£)", value=100000)
-
 # Optimization problem setup
 prob = LpProblem("Minimize_Costs", LpMinimize)
 
@@ -71,7 +77,15 @@ hub_active = LpVariable.dicts("HubActive", pd.DataFrame(hubs_data)['Site Referen
 
 # Define costs
 transportation_costs = lpSum([transport_vars[i, j] * distances[(i, j)] * haulage_cost_per_tonne_mile for i, j in transport_vars])
-production_costs = lpSum([(lpSum([transport_vars[i, j] for i in pd.DataFrame(sources_data)['Site Reference']]) * conversion_factor) * pd.DataFrame(hubs_data).set_index('Site Reference').at[j, 'Cost of Heat (£/kWh)'] * heat_required_per_tonne for j in pd.DataFrame(hubs_data)['Site Reference']])
+production_costs = lpSum([
+    (lpSum([transport_vars[i, j] for i in pd.DataFrame(sources_data)['Site Reference']]) * conversion_factor) *
+    (pd.DataFrame(hubs_data).set_index('Site Reference').at[j, 'Cost of Heat (£/kWh)'] * heat_required_per_tonne +
+     co2_per_tonne * cost_co2 +
+     ammonia_per_tonne * cost_ammonia +
+     phosphorus_per_tonne * cost_phosphorus +
+     nitrogen_per_tonne * cost_nitrogen)
+    for j in pd.DataFrame(hubs_data)['Site Reference']
+])
 capex_costs = lpSum([hub_active[j] * generic_capex for j in pd.DataFrame(hubs_data)['Site Reference']])
 
 # Objective function
@@ -91,7 +105,15 @@ prob.solve()
 
 # Calculate total costs
 total_transportation_cost = sum(transport_vars[i, j].varValue * distances[(i, j)] * haulage_cost_per_tonne_mile for i, j in transport_vars)
-total_production_cost = sum((sum(transport_vars[i, j].varValue for i in pd.DataFrame(sources_data)['Site Reference']) * conversion_factor) * pd.DataFrame(hubs_data).set_index('Site Reference').at[j, 'Cost of Heat (£/kWh)'] * heat_required_per_tonne for j in pd.DataFrame(hubs_data)['Site Reference'])
+total_production_cost = sum(
+    (sum(transport_vars[i, j].varValue for i in pd.DataFrame(sources_data)['Site Reference']) * conversion_factor) *
+    (pd.DataFrame(hubs_data).set_index('Site Reference').at[j, 'Cost of Heat (£/kWh)'] * heat_required_per_tonne +
+     co2_per_tonne * cost_co2 +
+     ammonia_per_tonne * cost_ammonia +
+     phosphorus_per_tonne * cost_phosphorus +
+     nitrogen_per_tonne * cost_nitrogen)
+    for j in pd.DataFrame(hubs_data)['Site Reference']
+)
 total_capex = sum(hub_active[j].varValue * generic_capex for j in pd.DataFrame(hubs_data)['Site Reference'])
 total_cost = total_transportation_cost + total_production_cost + total_capex
 total_production_quantity = sum(sum(transport_vars[i, j].varValue for i in pd.DataFrame(sources_data)['Site Reference']) * conversion_factor for j in pd.DataFrame(hubs_data)['Site Reference'])
@@ -117,6 +139,7 @@ transport_data = []
 for (i, j) in transport_vars:
     if transport_vars[i, j].varValue > 0:
         amount_transported = transport_vars[i, j].varValue
+
         transport_data.append({"Source": i, "Hub": j, "Amount Transported (tonnes)": amount_transported})
 
 # Create a DataFrame for the transport data
@@ -161,17 +184,3 @@ for (i, j) in transport_vars:
                                weight=line_weight, color='red',
                                popup=(f"Transport from {i} to {j}: {transport_vars[i, j].varValue:.2f} tonnes")).add_to(map_osm)
 folium_static(map_osm)
-
-# Debug output to verify the results of the optimization
-st.write("### Production quantities at each hub:")
-for j in pd.DataFrame(hubs_data)['Site Reference']:
-    production_quantity = sum(transport_vars[i, j].varValue for i in pd.DataFrame(sources_data)['Site Reference']) * conversion_factor
-    st.write(f"Hub {j}: {production_quantity:.2f} tonnes")
-
-st.write("### Amount of feedstock transported between each source and hub:")
-transport_data = []
-for (i, j) in transport_vars:
-    if transport_vars[i, j].varValue > 0:
-        amount_transported = transport_vars[i, j].varValue
-        st.write(f"Transport from Source {i} to Hub {j}: {amount_transported:.2f} tonnes")
-        transport_data.append({"Source": i, "Hub": j, "Amount Transported (tonnes)": amount_transported})

@@ -4,3 +4,4 @@ numpy
 folium
 pulp
 streamlit-folium
+xlsxwriter

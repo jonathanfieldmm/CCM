@@ -15,7 +15,7 @@ def load_data(uploaded_file):
     return None
 
 # Streamlit UI components
-st.title("Optimization Model for Production and Transportation Cost Minimization")
+st.title("CCM Optimisation Model for Fertiliser Production and Transportation Cost Minimization")
 
 st.sidebar.header("Upload Data Files")
 uploaded_hubs_file = st.sidebar.file_uploader("Upload Hubs Data", type=["xlsx"])

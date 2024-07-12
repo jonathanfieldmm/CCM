@@ -28,7 +28,7 @@ sources_df = pd.DataFrame(sources_data)
 
 # Key inputs
 conversion_factor = 0.7 #Feedstock to fertilizer, adjust as needed
-heat_required_per_tonne = 1  # in kWh per tonne of fertilizer, adjust as needed
+heat_required_per_tonne = 10  # in kWh per tonne of fertilizer, adjust as needed
 haulage_cost_per_tonne_mile = 0.02  # Example haulage cost
 minimum_total_production = 120000  # Example minimum total production requirement
 generic_capex = 100000  # Example generic CAPEX value for each hub

@@ -7,10 +7,10 @@ from pulp import LpProblem, LpMinimize, LpVariable, lpSum, LpStatus, LpBinary
 from streamlit_folium import folium_static
 import math
 
-# Sample data forj hubs and sources (replace with your actual data)
+# Sample data for hubs and sources (replace with your actual data)
 hubs_data = {
     'Site Reference': ['Hub01', 'Hub02', 'Hub03', 'Hub04', 'Hub05', 'Hub06', 'Hub07', 'Hub08', 'Hub09', 'Hub10'],
-    'X Coordinates': [51.5074, 53.4808, 55.9533, 52.4862, 53.4084, 52.6309, 54.9783, 53.8008, 50.3755, 55.8642],
+    'X Coordinates': [51.5074, 53.4808, 55.9533, 52.513, 53.4084, 52.6309, 54.9783, 53.8008, 50.3755, 55.8642],
     'Y Coordinates': [-0.1278, -2.2426, -3.1883, -1.8904, -2.9916, 1.2974, -1.6174, -1.5491, -4.1427, -4.2518],
     'Heat Available (kWh/year)': [500000, 750000, 600000, 450000, 800000, 700000, 650000, 550000, 720000, 600000],
     'Cost of Heat (£/kWh)': [0.05, 0.04, 0.06, 0.05, 0.04, 0.06, 0.07, 0.05, 0.04, 0.06],
@@ -90,7 +90,7 @@ prob.solve()
 
 # Calculate total costs
 total_transportation_cost = sum(transport_vars[i, j].varValue * distances[(i, j)] * haulage_cost_per_tonne_mile for i, j in transport_vars)
-total_production_cost = sum((sum(transport_vars[i, j].varValue for i in pd.DataFrame(sources_data)['Site Reference']) * conversion_factor) * pd.DataFrame(hubs_data).set_index('Site Reference').at[j, 'Cost of Heat (£/kWh)'] for j in pd.DataFrame(hubs_data)['Site Reference'])
+total_production_cost = sum((sum(transport_vars[i, j].varValue for i in pd.DataFrame(sources_data)['Site Reference']) * conversion_factor) * pd.DataFrame(hubs_data).set_index('Site Reference').at[j, 'Cost of Heat (£/kWh)'] * heat_required_per_tonne for j in pd.DataFrame(hubs_data)['Site Reference'])
 total_capex = sum(hub_active[j].varValue * generic_capex for j in pd.DataFrame(hubs_data)['Site Reference'])
 total_cost = total_transportation_cost + total_production_cost + total_capex
 total_production_quantity = sum(sum(transport_vars[i, j].varValue for i in pd.DataFrame(sources_data)['Site Reference']) * conversion_factor for j in pd.DataFrame(hubs_data)['Site Reference'])
@@ -137,7 +137,7 @@ for (i, j) in transport_vars:
     if transport_vars[i, j].varValue > 0:
         source = pd.DataFrame(sources_data)[pd.DataFrame(sources_data)['Site Reference'] == i].iloc[0]
         hub = pd.DataFrame(hubs_data)[pd.DataFrame(hubs_data)['Site Reference'] == j].iloc[0]
-        line_weight = (transport_vars[i, j].varValue / max_transport) * 10
+        line_weight = 10
         line = folium.PolyLine(locations=[(source['X Coordinates'], source['Y Coordinates']), (hub['X Coordinates'], hub['Y Coordinates'])],
                                weight=line_weight, color='red',
                                popup=(f"Transport from {i} to {j}: {transport_vars[i, j].varValue:.2f} tonnes")).add_to(map_osm)

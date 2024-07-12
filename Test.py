@@ -36,7 +36,7 @@ minimum_total_production = st.sidebar.number_input("Minimum Total Production (to
 
 st.sidebar.header("Cost Inputs")
 haulage_cost_per_tonne_mile = st.sidebar.number_input("Haulage Cost per Tonne Mile (£)", value=0.02)
-generic_capex = st.sidebar.number_input("Generic CAPEX per site (£)", value=100000)
+generic_capex = st.sidebar.number_input("Generic CAPEX (£)", value=100000)
 cost_co2 = st.sidebar.number_input("Cost of CO2 (£/tonne)", value=50)
 cost_ammonia = st.sidebar.number_input("Cost of Ammonia (£/tonne)", value=100)
 cost_phosphorus = st.sidebar.number_input("Cost of Phosphorus (£/tonne)", value=80)
@@ -139,7 +139,7 @@ transport_data = []
 for (i, j) in transport_vars:
     if transport_vars[i, j].varValue > 0:
         amount_transported = transport_vars[i, j].varValue
-
+        st.write(f"Transport from Source {i} to Hub {j}: {amount_transported:.2f} tonnes")
         transport_data.append({"Source": i, "Hub": j, "Amount Transported (tonnes)": amount_transported})
 
 # Create a DataFrame for the transport data

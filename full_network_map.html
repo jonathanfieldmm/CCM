@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7b296b1cce46d2f05e4f56deb11915c1 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_7b296b1cce46d2f05e4f56deb11915c1" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_7b296b1cce46d2f05e4f56deb11915c1 = L.map(
+                "map_7b296b1cce46d2f05e4f56deb11915c1",
+                {
+                    center: [55.0, -3.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_13127c46f572d5c1044ed23733071ac8 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_13127c46f572d5c1044ed23733071ac8.addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var marker_84d5622b13829b903d76dc0057508c22 = L.marker(
+                [51.5074, -0.1278],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_ea01cac62a0a0822e7b9286f511e0a80 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "industry", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_84d5622b13829b903d76dc0057508c22.setIcon(icon_ea01cac62a0a0822e7b9286f511e0a80);
+        
+    
+        var popup_67c0deb4d60c9b54ef7eadfc40b64082 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_91034866295d07a3da19bf332523e743 = $(`<div id="html_91034866295d07a3da19bf332523e743" style="width: 100.0%; height: 100.0%;">Hub: Hub01<br>Quantity Used: 10000.00 tonnes<br>Max Capacity: 10000 tonnes</div>`)[0];
+                popup_67c0deb4d60c9b54ef7eadfc40b64082.setContent(html_91034866295d07a3da19bf332523e743);
+            
+        
+
+        marker_84d5622b13829b903d76dc0057508c22.bindPopup(popup_67c0deb4d60c9b54ef7eadfc40b64082)
+        ;
+
+        
+    
+    
+            var marker_0087549f52ae1605ccf5a95e415fa86e = L.marker(
+                [53.4808, -2.2426],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_845a2014a81a7196aebb5e3b0cf9856d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "industry", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_0087549f52ae1605ccf5a95e415fa86e.setIcon(icon_845a2014a81a7196aebb5e3b0cf9856d);
+        
+    
+        var popup_90ba74d4a8ca12011892ed90a5452d71 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c4f0bfc454aac502467486c3ba202066 = $(`<div id="html_c4f0bfc454aac502467486c3ba202066" style="width: 100.0%; height: 100.0%;">Hub: Hub02<br>Quantity Used: 15000.00 tonnes<br>Max Capacity: 15000 tonnes</div>`)[0];
+                popup_90ba74d4a8ca12011892ed90a5452d71.setContent(html_c4f0bfc454aac502467486c3ba202066);
+            
+        
+
+        marker_0087549f52ae1605ccf5a95e415fa86e.bindPopup(popup_90ba74d4a8ca12011892ed90a5452d71)
+        ;
+
+        
+    
+    
+            var marker_7ae73227d72dbb2dff0fac0437e4f08b = L.marker(
+                [55.9533, -3.1883],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_c290f772c2abfd0fb95c9ec95c428c01 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "industry", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_7ae73227d72dbb2dff0fac0437e4f08b.setIcon(icon_c290f772c2abfd0fb95c9ec95c428c01);
+        
+    
+        var popup_9ab2589247b156d2b88cf5f22eb88cbb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_39cc8f0ec3e7ac30246e570612286d43 = $(`<div id="html_39cc8f0ec3e7ac30246e570612286d43" style="width: 100.0%; height: 100.0%;">Hub: Hub03<br>Quantity Used: 12000.00 tonnes<br>Max Capacity: 12000 tonnes</div>`)[0];
+                popup_9ab2589247b156d2b88cf5f22eb88cbb.setContent(html_39cc8f0ec3e7ac30246e570612286d43);
+            
+        
+
+        marker_7ae73227d72dbb2dff0fac0437e4f08b.bindPopup(popup_9ab2589247b156d2b88cf5f22eb88cbb)
+        ;
+
+        
+    
+    
+            var marker_6841cf64a704650d2ed24da4610c43bc = L.marker(
+                [52.4862, -1.8904],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_196193723dbdc0a1cf69e1bdc50cc01c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "industry", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_6841cf64a704650d2ed24da4610c43bc.setIcon(icon_196193723dbdc0a1cf69e1bdc50cc01c);
+        
+    
+        var popup_33eae15ed9da83cb8169a9aa83c20129 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e0b47157cb2f47a45ccc12425096d4d5 = $(`<div id="html_e0b47157cb2f47a45ccc12425096d4d5" style="width: 100.0%; height: 100.0%;">Hub: Hub04<br>Quantity Used: 9000.00 tonnes<br>Max Capacity: 9000 tonnes</div>`)[0];
+                popup_33eae15ed9da83cb8169a9aa83c20129.setContent(html_e0b47157cb2f47a45ccc12425096d4d5);
+            
+        
+
+        marker_6841cf64a704650d2ed24da4610c43bc.bindPopup(popup_33eae15ed9da83cb8169a9aa83c20129)
+        ;
+
+        
+    
+    
+            var marker_f69705a9167d2e87c80c3346a5868291 = L.marker(
+                [53.4084, -2.9916],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_2afa3fa06c91f064c4e0344ba6d823b9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "industry", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_f69705a9167d2e87c80c3346a5868291.setIcon(icon_2afa3fa06c91f064c4e0344ba6d823b9);
+        
+    
+        var popup_75140de31c61ab876ff743a15549efc1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8be456f1c1ab8b086a79afb0d4676823 = $(`<div id="html_8be456f1c1ab8b086a79afb0d4676823" style="width: 100.0%; height: 100.0%;">Hub: Hub05<br>Quantity Used: 16000.00 tonnes<br>Max Capacity: 16000 tonnes</div>`)[0];
+                popup_75140de31c61ab876ff743a15549efc1.setContent(html_8be456f1c1ab8b086a79afb0d4676823);
+            
+        
+
+        marker_f69705a9167d2e87c80c3346a5868291.bindPopup(popup_75140de31c61ab876ff743a15549efc1)
+        ;
+
+        
+    
+    
+            var marker_23530515564077a4df7657396fc0ee6c = L.marker(
+                [52.6309, 1.2974],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_8b87e90645937aa590ae9d62a01be7bd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "industry", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_23530515564077a4df7657396fc0ee6c.setIcon(icon_8b87e90645937aa590ae9d62a01be7bd);
+        
+    
+        var popup_ba6f24982c923e5eb68ef81c88231906 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1d34e1783c478e565f5550a57f35b566 = $(`<div id="html_1d34e1783c478e565f5550a57f35b566" style="width: 100.0%; height: 100.0%;">Hub: Hub06<br>Quantity Used: 14000.00 tonnes<br>Max Capacity: 14000 tonnes</div>`)[0];
+                popup_ba6f24982c923e5eb68ef81c88231906.setContent(html_1d34e1783c478e565f5550a57f35b566);
+            
+        
+
+        marker_23530515564077a4df7657396fc0ee6c.bindPopup(popup_ba6f24982c923e5eb68ef81c88231906)
+        ;
+
+        
+    
+    
+            var marker_9b15d48951040800c72704723ea0cc55 = L.marker(
+                [54.9783, -1.6174],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_444247782e5892187f41358a023ac3c2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "industry", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_9b15d48951040800c72704723ea0cc55.setIcon(icon_444247782e5892187f41358a023ac3c2);
+        
+    
+        var popup_f59187ea714906970ce54c95b80597a5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_77e3d2daede267fabc6f1aa0a4e9b1dc = $(`<div id="html_77e3d2daede267fabc6f1aa0a4e9b1dc" style="width: 100.0%; height: 100.0%;">Hub: Hub07<br>Quantity Used: 13000.00 tonnes<br>Max Capacity: 13000 tonnes</div>`)[0];
+                popup_f59187ea714906970ce54c95b80597a5.setContent(html_77e3d2daede267fabc6f1aa0a4e9b1dc);
+            
+        
+
+        marker_9b15d48951040800c72704723ea0cc55.bindPopup(popup_f59187ea714906970ce54c95b80597a5)
+        ;
+
+        
+    
+    
+            var marker_a69ec0140e11b60fae9164b3ad2d4353 = L.marker(
+                [53.8008, -1.5491],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_208ad1341436dd65bebeeadc5327de1b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "industry", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_a69ec0140e11b60fae9164b3ad2d4353.setIcon(icon_208ad1341436dd65bebeeadc5327de1b);
+        
+    
+        var popup_51d16af0ff8bdaa1c7a701433c29083a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8100854a2fddab8f1d8a1a0cf2307711 = $(`<div id="html_8100854a2fddab8f1d8a1a0cf2307711" style="width: 100.0%; height: 100.0%;">Hub: Hub08<br>Quantity Used: 11000.00 tonnes<br>Max Capacity: 11000 tonnes</div>`)[0];
+                popup_51d16af0ff8bdaa1c7a701433c29083a.setContent(html_8100854a2fddab8f1d8a1a0cf2307711);
+            
+        
+
+        marker_a69ec0140e11b60fae9164b3ad2d4353.bindPopup(popup_51d16af0ff8bdaa1c7a701433c29083a)
+        ;
+
+        
+    
+    
+            var marker_050a4d4d9b6295568c29e040d988baf0 = L.marker(
+                [50.3755, -4.1427],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_bac59f89e36ce1060806df55ac7aab47 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "industry", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_050a4d4d9b6295568c29e040d988baf0.setIcon(icon_bac59f89e36ce1060806df55ac7aab47);
+        
+    
+        var popup_7ee520f710b390893e0bec0ae08259ea = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_755fc9b2559c183ed145ce64a1a0fa9f = $(`<div id="html_755fc9b2559c183ed145ce64a1a0fa9f" style="width: 100.0%; height: 100.0%;">Hub: Hub09<br>Quantity Used: 15000.00 tonnes<br>Max Capacity: 15000 tonnes</div>`)[0];
+                popup_7ee520f710b390893e0bec0ae08259ea.setContent(html_755fc9b2559c183ed145ce64a1a0fa9f);
+            
+        
+
+        marker_050a4d4d9b6295568c29e040d988baf0.bindPopup(popup_7ee520f710b390893e0bec0ae08259ea)
+        ;
+
+        
+    
+    
+            var marker_e0ac9a60e409e62625dcc060e52fa76d = L.marker(
+                [55.8642, -4.2518],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_7da380f3d833e9bc0f4da53e583608d1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "industry", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_e0ac9a60e409e62625dcc060e52fa76d.setIcon(icon_7da380f3d833e9bc0f4da53e583608d1);
+        
+    
+        var popup_7b71d53c778703cb0937071a8da87af7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_36bbc43b721cc651a0b9ded69bb91292 = $(`<div id="html_36bbc43b721cc651a0b9ded69bb91292" style="width: 100.0%; height: 100.0%;">Hub: Hub10<br>Quantity Used: 5000.00 tonnes<br>Max Capacity: 12000 tonnes</div>`)[0];
+                popup_7b71d53c778703cb0937071a8da87af7.setContent(html_36bbc43b721cc651a0b9ded69bb91292);
+            
+        
+
+        marker_e0ac9a60e409e62625dcc060e52fa76d.bindPopup(popup_7b71d53c778703cb0937071a8da87af7)
+        ;
+
+        
+    
+    
+            var marker_abf5625ebdbb9679018112139b29dbd0 = L.marker(
+                [52.2053, 0.1218],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_9d7a041697bcb0e24412e4db49c6287d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "leaf", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_abf5625ebdbb9679018112139b29dbd0.setIcon(icon_9d7a041697bcb0e24412e4db49c6287d);
+        
+    
+        var popup_53b09ed7a96abb020e78c01fdf68bf0d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_51ee6c7445bcc271327677ae4eb5d140 = $(`<div id="html_51ee6c7445bcc271327677ae4eb5d140" style="width: 100.0%; height: 100.0%;">Source: FS01<br>Available Quantity: 20000 tonnes<br>Quantity Used: 20000.00 tonnes</div>`)[0];
+                popup_53b09ed7a96abb020e78c01fdf68bf0d.setContent(html_51ee6c7445bcc271327677ae4eb5d140);
+            
+        
+
+        marker_abf5625ebdbb9679018112139b29dbd0.bindPopup(popup_53b09ed7a96abb020e78c01fdf68bf0d)
+        ;
+
+        
+    
+    
+            var marker_ac224ea9c2077e765bc8a74f2d057977 = L.marker(
+                [51.5095, -0.0959],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_cca436b9f5172c2fd37c238120653289 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "leaf", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_ac224ea9c2077e765bc8a74f2d057977.setIcon(icon_cca436b9f5172c2fd37c238120653289);
+        
+    
+        var popup_564be0672c7a7a1b658c299f4a3caf56 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3070c6d8ac72ce5f9e383454ceae9842 = $(`<div id="html_3070c6d8ac72ce5f9e383454ceae9842" style="width: 100.0%; height: 100.0%;">Source: FS02<br>Available Quantity: 25000 tonnes<br>Quantity Used: 14285.71 tonnes</div>`)[0];
+                popup_564be0672c7a7a1b658c299f4a3caf56.setContent(html_3070c6d8ac72ce5f9e383454ceae9842);
+            
+        
+
+        marker_ac224ea9c2077e765bc8a74f2d057977.bindPopup(popup_564be0672c7a7a1b658c299f4a3caf56)
+        ;
+
+        
+    
+    
+            var marker_6cb34f068a96f3851d4253a840c291e2 = L.marker(
+                [53.7893, -2.2425],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_0a3f761c35061a32b4bc4f27ec35ad02 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "leaf", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_6cb34f068a96f3851d4253a840c291e2.setIcon(icon_0a3f761c35061a32b4bc4f27ec35ad02);
+        
+    
+        var popup_34198e74f699fb0320a028b0b915ef82 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1f9b5e936ab18396ce2e1bd54cabefa4 = $(`<div id="html_1f9b5e936ab18396ce2e1bd54cabefa4" style="width: 100.0%; height: 100.0%;">Source: FS03<br>Available Quantity: 18000 tonnes<br>Quantity Used: 18000.00 tonnes</div>`)[0];
+                popup_34198e74f699fb0320a028b0b915ef82.setContent(html_1f9b5e936ab18396ce2e1bd54cabefa4);
+            
+        
+
+        marker_6cb34f068a96f3851d4253a840c291e2.bindPopup(popup_34198e74f699fb0320a028b0b915ef82)
+        ;
+
+        
+    
+    
+            var marker_8384310aa5405c20979e5e4f1bad99b0 = L.marker(
+                [51.4543, -2.5879],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_594cdf0e47c2dc2358cebda6f47d06f9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "leaf", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_8384310aa5405c20979e5e4f1bad99b0.setIcon(icon_594cdf0e47c2dc2358cebda6f47d06f9);
+        
+    
+        var popup_4208f5b5b1636b756474c7fd7908ef64 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8fea97126ed84883cb53df2aee175002 = $(`<div id="html_8fea97126ed84883cb53df2aee175002" style="width: 100.0%; height: 100.0%;">Source: FS04<br>Available Quantity: 30000 tonnes<br>Quantity Used: 30000.00 tonnes</div>`)[0];
+                popup_4208f5b5b1636b756474c7fd7908ef64.setContent(html_8fea97126ed84883cb53df2aee175002);
+            
+        
+
+        marker_8384310aa5405c20979e5e4f1bad99b0.bindPopup(popup_4208f5b5b1636b756474c7fd7908ef64)
+        ;
+
+        
+    
+    
+            var marker_ea351334fa2ed8995292c82c959ea2df = L.marker(
+                [50.8225, -0.1373],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_27d8b71cc82dea1dc1c05d3c160a6031 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "leaf", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_ea351334fa2ed8995292c82c959ea2df.setIcon(icon_27d8b71cc82dea1dc1c05d3c160a6031);
+        
+    
+        var popup_057a5a62c75cea1726725b8a400aae54 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_06372f9cd6d6644afc265a32c2f73df1 = $(`<div id="html_06372f9cd6d6644afc265a32c2f73df1" style="width: 100.0%; height: 100.0%;">Source: FS05<br>Available Quantity: 15000 tonnes<br>Quantity Used: 0.00 tonnes</div>`)[0];
+                popup_057a5a62c75cea1726725b8a400aae54.setContent(html_06372f9cd6d6644afc265a32c2f73df1);
+            
+        
+
+        marker_ea351334fa2ed8995292c82c959ea2df.bindPopup(popup_057a5a62c75cea1726725b8a400aae54)
+        ;
+
+        
+    
+    
+            var marker_c5f1d719d7244ae8d3dc110f46cd858e = L.marker(
+                [51.4816, -0.4725],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_224a98cb5d75bb47350c5b8ed5a49f7d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "leaf", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_c5f1d719d7244ae8d3dc110f46cd858e.setIcon(icon_224a98cb5d75bb47350c5b8ed5a49f7d);
+        
+    
+        var popup_0f5ce6c86042616196e544a7656cd408 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c5bfe9d7f453af10f62aab10cdce63b4 = $(`<div id="html_c5bfe9d7f453af10f62aab10cdce63b4" style="width: 100.0%; height: 100.0%;">Source: FS06<br>Available Quantity: 22000 tonnes<br>Quantity Used: 0.00 tonnes</div>`)[0];
+                popup_0f5ce6c86042616196e544a7656cd408.setContent(html_c5bfe9d7f453af10f62aab10cdce63b4);
+            
+        
+
+        marker_c5f1d719d7244ae8d3dc110f46cd858e.bindPopup(popup_0f5ce6c86042616196e544a7656cd408)
+        ;
+
+        
+    
+    
+            var marker_faf095fd724d219c763f3a25a567a90b = L.marker(
+                [53.7632, -2.7034],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_cb3f9a95f4c1ed14de242bd8d9526e44 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "leaf", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_faf095fd724d219c763f3a25a567a90b.setIcon(icon_cb3f9a95f4c1ed14de242bd8d9526e44);
+        
+    
+        var popup_33025570c53074045eae44e6af51cb0d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_51629e35c377710c6c66f3280a833f51 = $(`<div id="html_51629e35c377710c6c66f3280a833f51" style="width: 100.0%; height: 100.0%;">Source: FS07<br>Available Quantity: 28000 tonnes<br>Quantity Used: 28000.00 tonnes</div>`)[0];
+                popup_33025570c53074045eae44e6af51cb0d.setContent(html_51629e35c377710c6c66f3280a833f51);
+            
+        
+
+        marker_faf095fd724d219c763f3a25a567a90b.bindPopup(popup_33025570c53074045eae44e6af51cb0d)
+        ;
+
+        
+    
+    
+            var marker_3538644e344f3afa11956f00c6950aaa = L.marker(
+                [52.4862, -1.8904],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_5270979bd2356f59791142679998a604 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "leaf", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_3538644e344f3afa11956f00c6950aaa.setIcon(icon_5270979bd2356f59791142679998a604);
+        
+    
+        var popup_12d44bd6b1f6e8ecf7c5a1753e090446 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f4f4b15fa3651a3ba81a82d6d175a455 = $(`<div id="html_f4f4b15fa3651a3ba81a82d6d175a455" style="width: 100.0%; height: 100.0%;">Source: FS08<br>Available Quantity: 27000 tonnes<br>Quantity Used: 27000.00 tonnes</div>`)[0];
+                popup_12d44bd6b1f6e8ecf7c5a1753e090446.setContent(html_f4f4b15fa3651a3ba81a82d6d175a455);
+            
+        
+
+        marker_3538644e344f3afa11956f00c6950aaa.bindPopup(popup_12d44bd6b1f6e8ecf7c5a1753e090446)
+        ;
+
+        
+    
+    
+            var marker_f4ad1bfe052588e951efb174e49bd41c = L.marker(
+                [50.7192, -1.8808],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_47bac3de4997a7d59c8e7a743b483d71 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "leaf", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_f4ad1bfe052588e951efb174e49bd41c.setIcon(icon_47bac3de4997a7d59c8e7a743b483d71);
+        
+    
+        var popup_5e9cd697fbfd7cb80c6ba09e12cc8138 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4028472b72b766550b9c797453b2d8c2 = $(`<div id="html_4028472b72b766550b9c797453b2d8c2" style="width: 100.0%; height: 100.0%;">Source: FS09<br>Available Quantity: 23000 tonnes<br>Quantity Used: 13142.86 tonnes</div>`)[0];
+                popup_5e9cd697fbfd7cb80c6ba09e12cc8138.setContent(html_4028472b72b766550b9c797453b2d8c2);
+            
+        
+
+        marker_f4ad1bfe052588e951efb174e49bd41c.bindPopup(popup_5e9cd697fbfd7cb80c6ba09e12cc8138)
+        ;
+
+        
+    
+    
+            var marker_5e85f03d7b8510bd6a031067029310cb = L.marker(
+                [55.3781, -3.436],
+                {}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+            var icon_c0b7eee5a6d0ce129547a69c21366387 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "leaf", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
+            );
+            marker_5e85f03d7b8510bd6a031067029310cb.setIcon(icon_c0b7eee5a6d0ce129547a69c21366387);
+        
+    
+        var popup_e12fadedc8c16055d2f11f54361dce3a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_55a636f3dc6928d1ebbed21a69b7b5b0 = $(`<div id="html_55a636f3dc6928d1ebbed21a69b7b5b0" style="width: 100.0%; height: 100.0%;">Source: FS10<br>Available Quantity: 21000 tonnes<br>Quantity Used: 21000.00 tonnes</div>`)[0];
+                popup_e12fadedc8c16055d2f11f54361dce3a.setContent(html_55a636f3dc6928d1ebbed21a69b7b5b0);
+            
+        
+
+        marker_5e85f03d7b8510bd6a031067029310cb.bindPopup(popup_e12fadedc8c16055d2f11f54361dce3a)
+        ;
+
+        
+    
+    
+            var poly_line_ceddcfb3bdeb1bfab3200fbf17749859 = L.polyline(
+                [[52.2053, 0.1218], [52.6309, 1.2974]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 9.210526194598339}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_74b0048daffe7a229b54d671532aab34 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_76777c0a1be87d4edfea45f8c117215b = $(`<div id="html_76777c0a1be87d4edfea45f8c117215b" style="width: 100.0%; height: 100.0%;">Transport from FS01 to Hub06: 20000.00 tonnes</div>`)[0];
+                popup_74b0048daffe7a229b54d671532aab34.setContent(html_76777c0a1be87d4edfea45f8c117215b);
+            
+        
+
+        poly_line_ceddcfb3bdeb1bfab3200fbf17749859.bindPopup(popup_74b0048daffe7a229b54d671532aab34)
+        ;
+
+        
+    
+    
+            var poly_line_ed96a3a4b9cbe0cf042d811f8913acba = L.polyline(
+                [[51.5095, -0.0959], [51.5074, -0.1278]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 6.578947150277012}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_fdd303fcc95a1e98f77a61b816f1d84f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_138c30eefd18524fe61d3aaf07698827 = $(`<div id="html_138c30eefd18524fe61d3aaf07698827" style="width: 100.0%; height: 100.0%;">Transport from FS02 to Hub01: 14285.71 tonnes</div>`)[0];
+                popup_fdd303fcc95a1e98f77a61b816f1d84f.setContent(html_138c30eefd18524fe61d3aaf07698827);
+            
+        
+
+        poly_line_ed96a3a4b9cbe0cf042d811f8913acba.bindPopup(popup_fdd303fcc95a1e98f77a61b816f1d84f)
+        ;
+
+        
+    
+    
+            var poly_line_e0ea765feab38dbd7876d20f7ef2f4fa = L.polyline(
+                [[53.7893, -2.2425], [54.9783, -1.6174]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 1.0526315716759003}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_744037dfcd3a64a4a8992954c69c7ca4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_34c665e2c76027aef5ec2ce880c7119b = $(`<div id="html_34c665e2c76027aef5ec2ce880c7119b" style="width: 100.0%; height: 100.0%;">Transport from FS03 to Hub07: 2285.71 tonnes</div>`)[0];
+                popup_744037dfcd3a64a4a8992954c69c7ca4.setContent(html_34c665e2c76027aef5ec2ce880c7119b);
+            
+        
+
+        poly_line_e0ea765feab38dbd7876d20f7ef2f4fa.bindPopup(popup_744037dfcd3a64a4a8992954c69c7ca4)
+        ;
+
+        
+    
+    
+            var poly_line_c7ee7c32c3326b1bb5a07ee394b7ba39 = L.polyline(
+                [[53.7893, -2.2425], [53.8008, -1.5491]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 7.236842141620499}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_35b246d07baf17eaee8196c9e761e3c3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e684af9de5cd0a8e53bb9ac3c0c56107 = $(`<div id="html_e684af9de5cd0a8e53bb9ac3c0c56107" style="width: 100.0%; height: 100.0%;">Transport from FS03 to Hub08: 15714.29 tonnes</div>`)[0];
+                popup_35b246d07baf17eaee8196c9e761e3c3.setContent(html_e684af9de5cd0a8e53bb9ac3c0c56107);
+            
+        
+
+        poly_line_c7ee7c32c3326b1bb5a07ee394b7ba39.bindPopup(popup_35b246d07baf17eaee8196c9e761e3c3)
+        ;
+
+        
+    
+    
+            var poly_line_368c869550fd794e299bf880306ec1e3 = L.polyline(
+                [[51.4543, -2.5879], [53.4084, -2.9916]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 10.0}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_09e7f4dca3d0fccd80f15ace43c5b31b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f6156957170aa7816dd0f729935837c8 = $(`<div id="html_f6156957170aa7816dd0f729935837c8" style="width: 100.0%; height: 100.0%;">Transport from FS04 to Hub05: 21714.29 tonnes</div>`)[0];
+                popup_09e7f4dca3d0fccd80f15ace43c5b31b.setContent(html_f6156957170aa7816dd0f729935837c8);
+            
+        
+
+        poly_line_368c869550fd794e299bf880306ec1e3.bindPopup(popup_09e7f4dca3d0fccd80f15ace43c5b31b)
+        ;
+
+        
+    
+    
+            var poly_line_e6f5eebe7cb90c8b971699e7ca63e7a4 = L.polyline(
+                [[51.4543, -2.5879], [50.3755, -4.1427]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3.8157894300554016}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_397372be82b45723b8f70a217c5c3da9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3bc2b5aeb5fe3ca6fba405e623161c61 = $(`<div id="html_3bc2b5aeb5fe3ca6fba405e623161c61" style="width: 100.0%; height: 100.0%;">Transport from FS04 to Hub09: 8285.71 tonnes</div>`)[0];
+                popup_397372be82b45723b8f70a217c5c3da9.setContent(html_3bc2b5aeb5fe3ca6fba405e623161c61);
+            
+        
+
+        poly_line_e6f5eebe7cb90c8b971699e7ca63e7a4.bindPopup(popup_397372be82b45723b8f70a217c5c3da9)
+        ;
+
+        
+    
+    
+            var poly_line_891efd62b46decd4f3b4824c14c447b2 = L.polyline(
+                [[53.7632, -2.7034], [53.4808, -2.2426]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3.355263120325485}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_a75c238ba14d0b1ac6e566b20a8a9d6b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3f0846b782446537e70b251f5e4084cc = $(`<div id="html_3f0846b782446537e70b251f5e4084cc" style="width: 100.0%; height: 100.0%;">Transport from FS07 to Hub02: 7285.71 tonnes</div>`)[0];
+                popup_a75c238ba14d0b1ac6e566b20a8a9d6b.setContent(html_3f0846b782446537e70b251f5e4084cc);
+            
+        
+
+        poly_line_891efd62b46decd4f3b4824c14c447b2.bindPopup(popup_a75c238ba14d0b1ac6e566b20a8a9d6b)
+        ;
+
+        
+    
+    
+            var poly_line_2cdb18cce479969f574549dbdfdd3f3f = L.polyline(
+                [[53.7632, -2.7034], [53.4084, -2.9916]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5263157628116346}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_842f597bf9bd80f5c4f6096c98a575dc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9a16925d4df6b3c0559733645ca6e246 = $(`<div id="html_9a16925d4df6b3c0559733645ca6e246" style="width: 100.0%; height: 100.0%;">Transport from FS07 to Hub05: 1142.86 tonnes</div>`)[0];
+                popup_842f597bf9bd80f5c4f6096c98a575dc.setContent(html_9a16925d4df6b3c0559733645ca6e246);
+            
+        
+
+        poly_line_2cdb18cce479969f574549dbdfdd3f3f.bindPopup(popup_842f597bf9bd80f5c4f6096c98a575dc)
+        ;
+
+        
+    
+    
+            var poly_line_51337a8f46cf916f307a4488c42f98d0 = L.polyline(
+                [[53.7632, -2.7034], [54.9783, -1.6174]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 7.499999769736845}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_1b68faa4db4bd2e0d45b5bdd4cf71fb4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f8a8f399c51f54c30c493ace65000864 = $(`<div id="html_f8a8f399c51f54c30c493ace65000864" style="width: 100.0%; height: 100.0%;">Transport from FS07 to Hub07: 16285.71 tonnes</div>`)[0];
+                popup_1b68faa4db4bd2e0d45b5bdd4cf71fb4.setContent(html_f8a8f399c51f54c30c493ace65000864);
+            
+        
+
+        poly_line_51337a8f46cf916f307a4488c42f98d0.bindPopup(popup_1b68faa4db4bd2e0d45b5bdd4cf71fb4)
+        ;
+
+        
+    
+    
+            var poly_line_d0cacedef04a420da97ad4870f1f64ab = L.polyline(
+                [[53.7632, -2.7034], [55.8642, -4.2518]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 1.5131578814058175}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_a5dc37eeac26bc38c7f16a5bfbf2c973 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_88fcc810fdda09b1623033c1f1d0c7f7 = $(`<div id="html_88fcc810fdda09b1623033c1f1d0c7f7" style="width: 100.0%; height: 100.0%;">Transport from FS07 to Hub10: 3285.71 tonnes</div>`)[0];
+                popup_a5dc37eeac26bc38c7f16a5bfbf2c973.setContent(html_88fcc810fdda09b1623033c1f1d0c7f7);
+            
+        
+
+        poly_line_d0cacedef04a420da97ad4870f1f64ab.bindPopup(popup_a5dc37eeac26bc38c7f16a5bfbf2c973)
+        ;
+
+        
+    
+    
+            var poly_line_3c0e529c2017fc870f8b593dcd1ae27e = L.polyline(
+                [[52.4862, -1.8904], [53.4808, -2.2426]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 6.513157743247925}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_651ff761534f01d3243ce23869cbce63 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_38ef9b1c397e6395f4c88b67e102c306 = $(`<div id="html_38ef9b1c397e6395f4c88b67e102c306" style="width: 100.0%; height: 100.0%;">Transport from FS08 to Hub02: 14142.86 tonnes</div>`)[0];
+                popup_651ff761534f01d3243ce23869cbce63.setContent(html_38ef9b1c397e6395f4c88b67e102c306);
+            
+        
+
+        poly_line_3c0e529c2017fc870f8b593dcd1ae27e.bindPopup(popup_651ff761534f01d3243ce23869cbce63)
+        ;
+
+        
+    
+    
+            var poly_line_90fc6b062240fa38c216054bb397d95f = L.polyline(
+                [[52.4862, -1.8904], [52.4862, -1.8904]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 5.921052619459833}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_9658999c6cc21fb1ddb92ed55752efc1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4eb4f30ad6372da83434adba402d7210 = $(`<div id="html_4eb4f30ad6372da83434adba402d7210" style="width: 100.0%; height: 100.0%;">Transport from FS08 to Hub04: 12857.14 tonnes</div>`)[0];
+                popup_9658999c6cc21fb1ddb92ed55752efc1.setContent(html_4eb4f30ad6372da83434adba402d7210);
+            
+        
+
+        poly_line_90fc6b062240fa38c216054bb397d95f.bindPopup(popup_9658999c6cc21fb1ddb92ed55752efc1)
+        ;
+
+        
+    
+    
+            var poly_line_20819eaf372f4bd4ef7c4fec8056018f = L.polyline(
+                [[50.7192, -1.8808], [50.3755, -4.1427]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 6.052631433518007}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_0c9fd714cca23fea6b67358dbe610315 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_607448bbdf452109135d7b988b30bb24 = $(`<div id="html_607448bbdf452109135d7b988b30bb24" style="width: 100.0%; height: 100.0%;">Transport from FS09 to Hub09: 13142.86 tonnes</div>`)[0];
+                popup_0c9fd714cca23fea6b67358dbe610315.setContent(html_607448bbdf452109135d7b988b30bb24);
+            
+        
+
+        poly_line_20819eaf372f4bd4ef7c4fec8056018f.bindPopup(popup_0c9fd714cca23fea6b67358dbe610315)
+        ;
+
+        
+    
+    
+            var poly_line_ee2816b76894f1dfc05b436b0411a14b = L.polyline(
+                [[55.3781, -3.436], [55.9533, -3.1883]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 7.894736672437675}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_f6ca84186b9ea041609622db5a71e3e4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_bd35abe8752a59a542ab9c262987c544 = $(`<div id="html_bd35abe8752a59a542ab9c262987c544" style="width: 100.0%; height: 100.0%;">Transport from FS10 to Hub03: 17142.86 tonnes</div>`)[0];
+                popup_f6ca84186b9ea041609622db5a71e3e4.setContent(html_bd35abe8752a59a542ab9c262987c544);
+            
+        
+
+        poly_line_ee2816b76894f1dfc05b436b0411a14b.bindPopup(popup_f6ca84186b9ea041609622db5a71e3e4)
+        ;
+
+        
+    
+    
+            var poly_line_1e0f26afd6fd1ee3f59782a7b2e9b17e = L.polyline(
+                [[55.3781, -3.436], [55.8642, -4.2518]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 1.77631578583795}
+            ).addTo(map_7b296b1cce46d2f05e4f56deb11915c1);
+        
+    
+        var popup_ed13fd577cf18d715bc40911d215f206 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9e0d19d658e89fe590584a0cb8e06eb4 = $(`<div id="html_9e0d19d658e89fe590584a0cb8e06eb4" style="width: 100.0%; height: 100.0%;">Transport from FS10 to Hub10: 3857.14 tonnes</div>`)[0];
+                popup_ed13fd577cf18d715bc40911d215f206.setContent(html_9e0d19d658e89fe590584a0cb8e06eb4);
+            
+        
+
+        poly_line_1e0f26afd6fd1ee3f59782a7b2e9b17e.bindPopup(popup_ed13fd577cf18d715bc40911d215f206)
+        ;
+
+        
+    
+</script>
+</html>

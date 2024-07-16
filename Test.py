@@ -14,7 +14,7 @@ def load_data(uploaded_file):
         return pd.read_excel(uploaded_file)
     return None
 
-# Streamlit UI components
+# Streamlit UI components are goof t
 st.title("CCM Optimisation Model for Fertiliser Production and Transportation Cost Minimization")
 
 st.sidebar.header("Upload Data Files")

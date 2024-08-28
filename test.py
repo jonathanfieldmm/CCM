@@ -32,6 +32,7 @@ minimum_hub_production = 15000  # Minimum production per hub
 # Cost inputs
 haulage_cost_per_tonne_mile = 0.02
 generic_capex = 100000
+variable_capex_per_tonne = 50  # Variable CAPEX per tonne
 cost_dolomite = 40
 cost_urea = 60
 
@@ -64,7 +65,10 @@ production_costs = lpSum([
      urea_per_tonne * cost_urea)
     for j in hubs_df['Site Reference']
 ])
-capex_costs = lpSum([hub_active[j] * generic_capex for j in hubs_df['Site Reference']])
+capex_costs = lpSum([
+    hub_active[j] * (generic_capex + variable_capex_per_tonne * lpSum([transport_vars[i, j] for i in sources_df['Site Reference']]) * conversion_factor)
+    for j in hubs_df['Site Reference']
+])
 
 # Objective function
 prob += transportation_costs + production_costs + capex_costs, "Total Costs"
@@ -91,7 +95,6 @@ print("\nProduction quantities at each hub:")
 for j in hubs_df['Site Reference']:
     production_quantity = sum(transport_vars[i, j].varValue for i in sources_df['Site Reference']) * conversion_factor
     print(f"Hub {j}: {production_quantity:.2f} tonnes")
-
 
 print("\nAmount of feedstock transported between each source and hub:")
 transport_data = []

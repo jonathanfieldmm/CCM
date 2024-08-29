@@ -22,8 +22,8 @@ def haversine(lon1, lat1, lon2, lat2):
     return distance
 
 # Load data
-hubs_df = load_data("Data/Hubs_Data_Actual.xlsx")
-sources_df = load_data("Data/Sources_Data_Actual.xlsx")
+hubs_df = load_data("Data/Industrial_Hubs_Main.xlsx")
+sources_df = load_data("Data/Digestate_Sources_Main.xlsx")
 
 # Main inputs
 minimum_total_production = 400000

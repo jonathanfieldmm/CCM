@@ -47,14 +47,17 @@ if include_additional_sources == 'yes':
 
 
 # Main inputs
-minimum_total_production = 400000
+minimum_total_production = 300000
 minimum_hub_production = 15000  # Minimum production per hub
 
 # Cost inputs
-haulage_cost_per_tonne_mile = 0.02
-generic_capex = 10000
-cost_dolomite = 40
-cost_urea = 60
+haulage_cost_per_mile = 1.86   # £/km
+average_load=20  # Tonnes
+haulage_cost_per_tonne_mile = haulage_cost_per_mile/average_load    # £/(tonne*km)
+fixed_capex = 100000  # Fixed CAPEX per hub £
+variable_capex_per_tonne = 300  # Variable CAPEX per tonne of production £/tonne
+cost_dolomite = 40  # £
+cost_urea = 60    # £
 
 # Process inputs
 conversion_factor = 0.7
@@ -78,14 +81,25 @@ hub_active = LpVariable.dicts("HubActive", hubs_df['Site Reference'], cat='Binar
 
 # Define costs
 transportation_costs = lpSum([transport_vars[i, j] * distances[(i, j)] * haulage_cost_per_tonne_mile for i, j in transport_vars])
+# Extract the purchase price of feedstock from the sources data
+purchase_prices = sources_df.set_index('Site Reference')['Purchase Price (£/tonne)']
+
+# Define costs
 production_costs = lpSum([
     (lpSum([transport_vars[i, j] for i in sources_df['Site Reference']]) * conversion_factor) *
     (hubs_df.set_index('Site Reference').at[j, 'Cost of Heat (£/kWh)'] * heat_required_per_tonne +
      dolomite_per_tonne * cost_dolomite +
-     urea_per_tonne * cost_urea)
+     urea_per_tonne * cost_urea) +
+    lpSum([transport_vars[i, j] * purchase_prices[i] for i in sources_df['Site Reference']])  # Adding the purchase price of feedstock
     for j in hubs_df['Site Reference']
 ])
-capex_costs = lpSum([hub_active[j] * generic_capex for j in hubs_df['Site Reference']])
+
+# Calculate CAPEX costs including both fixed and variable components
+capex_costs = lpSum([
+    hub_active[j] * fixed_capex +  # Fixed cost when the hub is active
+    (lpSum([transport_vars[i, j] for i in sources_df['Site Reference']]) * conversion_factor) * variable_capex_per_tonne  # Variable cost per tonne produced
+    for j in hubs_df['Site Reference']
+])
 
 # Objective function
 prob += transportation_costs + production_costs + capex_costs, "Total Costs"
@@ -101,15 +115,12 @@ for j in hubs_df['Site Reference']:
     # Total production at each hub
     hub_production = lpSum([transport_vars[i, j] for i in sources_df['Site Reference']]) * conversion_factor
 
-    # Upper production constraint (capacity limit)
-    prob += hub_production <= hubs_df.set_index('Site Reference').at[j, 'Max Capacity (tonnes/year)'], f"Capacity_upper_constraint_{j}"
-
     # Lower production constraint - ensure minimum production when hub is active
     # If any feedstock is transported to the hub, hub_active[j] will be 1
     # Hub must produce at least the minimum required quantity
     prob += hub_production >= hub_active[j] * minimum_hub_production, f"Capacity_lower_constraint_{j}"
 
-    # Ensure that if the hub receives any feedstock, it must be active
+    # Ensure that if the hub receives any feedstock, it must be active, as well as Upper production constraint (capacity limit)
     prob += hub_production <= hubs_df.set_index('Site Reference').at[j, 'Max Capacity (tonnes/year)'] * hub_active[j], f"Hub_activation_constraint_{j}"
 
 # Constraint to meet the total minimum production across all hubs
@@ -202,3 +213,55 @@ for (i, j) in transport_vars:
 
 map_osm.save("network_map.html")
 print("Network map saved to 'network_map.html'.")
+# Extension: Generate Detailed Cost Report and Print Summary
+
+# Prepare detailed cost breakdown for each hub
+hub_costs = []
+
+for j in hubs_df['Site Reference']:
+    # Calculate production quantities and costs for each hub
+    production_quantity = sum(transport_vars[i, j].varValue for i in sources_df['Site Reference']) * conversion_factor
+    cost_of_heat = production_quantity * hubs_df.set_index('Site Reference').at[j, 'Cost of Heat (£/kWh)'] * heat_required_per_tonne
+    purchase_cost = sum(transport_vars[i, j].varValue * purchase_prices[i] for i in sources_df['Site Reference'])
+    fixed_capex_cost = hub_active[j].varValue * fixed_capex
+    variable_capex_cost = production_quantity * variable_capex_per_tonne
+    total_cost = cost_of_heat + purchase_cost + fixed_capex_cost + variable_capex_cost
+    avg_cost_per_tonne = total_cost / production_quantity if production_quantity > 0 else 0
+
+    hub_costs.append({
+        'Hub': j,
+        'Total_Production': production_quantity,
+        'Cost_of_Heat': cost_of_heat,
+        'Purchase_Cost': purchase_cost,
+        'Capex_Fixed': fixed_capex_cost,
+        'Capex_Variable': variable_capex_cost,
+        'Total_Cost': total_cost,
+        'Average_Cost_Per_Tonne': avg_cost_per_tonne
+    })
+
+# Create DataFrame for hub costs
+hub_costs_df = pd.DataFrame(hub_costs)
+
+# Calculate overall totals
+overall_totals = {
+    'Hub': 'Overall',
+    'Total_Production': hub_costs_df['Total_Production'].sum(),
+    'Cost_of_Heat': hub_costs_df['Cost_of_Heat'].sum(),
+    'Purchase_Cost': hub_costs_df['Purchase_Cost'].sum(),
+    'Capex_Fixed': hub_costs_df['Capex_Fixed'].sum(),
+    'Capex_Variable': hub_costs_df['Capex_Variable'].sum(),
+    'Total_Cost': hub_costs_df['Total_Cost'].sum(),
+    'Average_Cost_Per_Tonne': hub_costs_df['Total_Cost'].sum() / hub_costs_df['Total_Production'].sum() if hub_costs_df['Total_Production'].sum() > 0 else 0
+}
+
+# Add overall totals to the DataFrame
+hub_costs_df = hub_costs_df._append(overall_totals, ignore_index=True)
+
+# Print summary of the results
+print("\nDetailed Cost Breakdown:")
+print(hub_costs_df.to_string(index=False))
+
+# Save the report to an Excel file
+report_path = "hub_cost_report.xlsx"
+hub_costs_df.to_excel(report_path, index=False)
+print(f"\nDetailed hub cost report saved to '{report_path}'.")

@@ -30,8 +30,8 @@ hubs_df['Source'] = 'main'
 sources_df['Source'] = 'main'
 
 # Separate options to include additional hubs and sources
-include_additional_hubs = 'yes'
-include_additional_sources = 'yes'
+include_additional_hubs = 'yes'   # additional hubs represent using data centres as a source of heat
+include_additional_sources = 'yes' # additional sources represent using compost as a feedstock
 
 # Load and merge additional hubs if user selects 'yes'
 if include_additional_hubs == 'yes':
@@ -120,7 +120,7 @@ for j in hubs_df['Site Reference']:
     # Hub must produce at least the minimum required quantity
     prob += hub_production >= hub_active[j] * minimum_hub_production, f"Capacity_lower_constraint_{j}"
 
-    # Ensure that if the hub receives any feedstock, it must be active, as well as Upper production constraint (capacity limit)
+    # Ensure that if the hub receives any feedstock, it must be active (and thus incur capex), as well as Upper production constraint (capacity limit)
     prob += hub_production <= hubs_df.set_index('Site Reference').at[j, 'Max Capacity (tonnes/year)'] * hub_active[j], f"Hub_activation_constraint_{j}"
 
 # Constraint to meet the total minimum production across all hubs

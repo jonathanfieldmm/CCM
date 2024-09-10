@@ -51,7 +51,7 @@ minimum_total_production = 300000
 minimum_hub_production = 15000  # Minimum production per hub
 
 # Cost inputs
-haulage_cost_per_mile = 1.86   # £/km
+haulage_cost_per_mile = 1.86   # £/mile
 average_load=20  # Tonnes
 haulage_cost_per_tonne_mile = haulage_cost_per_mile/average_load    # £/(tonne*km)
 fixed_capex = 100000  # Fixed CAPEX per hub £

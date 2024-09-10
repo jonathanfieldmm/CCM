@@ -72,7 +72,7 @@ if uploaded_hubs_file and uploaded_sources_file:
     minimum_hub_production = st.sidebar.number_input("Minimum Production per Hub (tonnes)", value=15000)
 
     st.sidebar.header("Cost Inputs")
-    haulage_cost_per_mile = st.sidebar.number_input("Haulage Cost per Mile (£/km)", value=1.86)
+    haulage_cost_per_mile = st.sidebar.number_input("Haulage Cost per Mile (£/mile)", value=1.86)
     average_load = st.sidebar.number_input("Average Load (tonnes)", value=20)
     haulage_cost_per_tonne_mile = haulage_cost_per_mile / average_load
     fixed_capex = st.sidebar.number_input("Fixed CAPEX per Hub (£)", value=100000)
